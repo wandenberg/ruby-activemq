@@ -3,14 +3,8 @@
 void register_MessageProducer(Module rb_module) {
 	Data_Type< cms::MessageProducer > rb_cMessageProducer =  define_class_under< cms::MessageProducer >(rb_module, "MessageProducer");
 
-
 	rb_cMessageProducer.define_method("time_to_live", &cms::MessageProducer::getTimeToLive);
-//	rb_cMessageProducer.define_method("time_to_live=", &cms::MessageProducer::setTimeToLive, (Arg("time")));
-	{
-		typedef void ( cms::MessageProducer::*setTimeToLive_func_type )( long long int time );
-		rb_cMessageProducer.define_method("time_to_live=", setTimeToLive_func_type( &cms::MessageProducer::setTimeToLive ), (Arg("time")));
-	}
-
+	rb_cMessageProducer.define_method("time_to_live=", &cms::MessageProducer::setTimeToLive, (Arg("time")));
 
 	rb_cMessageProducer.define_method("delivery_mode", &cms::MessageProducer::getDeliveryMode);
 	rb_cMessageProducer.define_method("delivery_mode=", &cms::MessageProducer::setDeliveryMode, (Arg("mode")));
@@ -21,7 +15,7 @@ void register_MessageProducer(Module rb_module) {
 	rb_cMessageProducer.define_method("disable_message_time_stamp?", &cms::MessageProducer::getDisableMessageTimeStamp);
 	rb_cMessageProducer.define_method("disable_message_time_stamp=", &cms::MessageProducer::setDisableMessageTimeStamp, (Arg("value")));
 
-	rb_cMessageProducer.define_method("disable_message_id", &cms::MessageProducer::getDisableMessageID);
+	rb_cMessageProducer.define_method("disable_message_id?", &cms::MessageProducer::getDisableMessageID);
 	rb_cMessageProducer.define_method("disable_message_id=", &cms::MessageProducer::setDisableMessageID, (Arg("value")));
 
 	{
