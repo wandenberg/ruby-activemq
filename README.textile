@@ -13,7 +13,7 @@ h2(#installing). Installing
 <pre>
 <code>
   gem install activemq
-</code
+</code>
 </pre>
 
 If needed you can pass where is the activemq-cpp, library and includes, example:
@@ -21,7 +21,7 @@ If needed you can pass where is the activemq-cpp, library and includes, example:
 <pre>
 <code>
   gem install activemq -- --with-activemq-cpp-lib=/opt/activemq-cpp-3.2.5/lib --with-activemq-cpp-include=/opt/activemq-cpp-3.2.5/include/activemq-cpp-3.2.5
-</code
+</code>
 </pre>
 
 h2(#basic-usage). Basic Usage
@@ -40,7 +40,7 @@ h3. Publish Message
   message = session.create_text_message("Text to send")
   producer.send_message(message)
   connection.close
-</code
+</code>
 </pre>
 
 h2(#todo). TODO
