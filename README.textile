@@ -1,0 +1,52 @@
+h1. Ruby ActiveMQ
+
+ActiveMQ client for Ruby using openwire protocol through activemq-cpp client.
+
+h2(#changelog). Changelog
+
+*0.0.1* - Initial version with support to publish text messages
+
+h2(#installing). Installing
+
+*You must install the "ActiveMQ-cpp":http://activemq.apache.org/cms/activemq-cpp-325-release.html 3.2.5 version previously*
+
+<pre>
+<code>
+  gem install activemq
+</code
+</pre>
+
+If needed you can pass where is the activemq-cpp, library and includes, example:
+
+<pre>
+<code>
+  gem install activemq -- --with-activemq-cpp-lib=/opt/activemq-cpp-3.2.5/lib --with-activemq-cpp-include=/opt/activemq-cpp-3.2.5/include/activemq-cpp-3.2.5
+</code
+</pre>
+
+h2(#basic-usage). Basic Usage
+
+_Considering default configuration of ActiveMQ server_
+
+h3. Publish Message
+<pre>
+<code>
+  require 'activemq'
+  amqcf = ActiveMQ::ConnectionFactory.new
+  connection = amqcf.create_connection
+  session = connection.create_session
+  topic = session.create_topic("topic_name")
+  producer = session.create_producer(topic)
+  message = session.create_text_message("Text to send")
+  producer.send_message(message)
+  connection.close
+</code
+</pre>
+
+h2(#todo). TODO
+
+*Add Properties to messages
+*Exception listener
+*Consumer by pooling
+*Consumer by stream
+*Work with Bytes and Map messages
