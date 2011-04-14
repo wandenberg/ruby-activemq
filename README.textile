@@ -45,8 +45,8 @@ h3. Publish Message
 
 h2(#todo). TODO
 
-*Add Properties to messages
-*Exception listener
-*Consumer by pooling
-*Consumer by stream
-*Work with Bytes and Map messages
+* Add Properties to messages
+* Exception listener
+* Consumer by pooling
+* Consumer by stream
+* Work with Bytes and Map messages
