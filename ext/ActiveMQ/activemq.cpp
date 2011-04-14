@@ -9,9 +9,6 @@ void register_MessageProducer(Module rb_module);
 void register_DeliveryMode(Module rb_module);
 void register_TextMessage(Module rb_module);
 
-void register_ActiveMQConnectionFactory(Module rb_module);
-
-
 extern "C"
 void Init_ActiveMQ() {
 	Module rb_mActivemq = define_module("ActiveMQ");
@@ -26,7 +23,22 @@ void Init_ActiveMQ() {
 	register_MessageProducer(rb_mActivemq);
 	register_DeliveryMode(rb_mActivemq);
 	register_TextMessage(rb_mActivemq);
-
-	register_ActiveMQConnectionFactory(rb_mActivemq);
 }
 
+template<>
+long long from_ruby<long long>(Object x)
+{
+	return protect(detail::num2long, x);
+}
+
+template<>
+Object to_ruby<long long>(long long const & x)
+{
+	return protect(detail::long2num, x);
+}
+
+Object
+instance(Object self, Object class_name)
+{
+   return to_ruby<bool>(self.class_of().value() == class_name.value());
+}

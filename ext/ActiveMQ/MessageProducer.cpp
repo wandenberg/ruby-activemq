@@ -2,6 +2,7 @@
 
 void register_MessageProducer(Module rb_module) {
 	Data_Type< cms::MessageProducer > rb_cMessageProducer =  define_class_under< cms::MessageProducer >(rb_module, "MessageProducer");
+	rb_cMessageProducer.define_method("instance?", &instance, (Arg("class")));
 
 	rb_cMessageProducer.define_method("time_to_live", &cms::MessageProducer::getTimeToLive);
 	rb_cMessageProducer.define_method("time_to_live=", &cms::MessageProducer::setTimeToLive, (Arg("time")));
@@ -18,24 +19,24 @@ void register_MessageProducer(Module rb_module) {
 	rb_cMessageProducer.define_method("disable_message_id?", &cms::MessageProducer::getDisableMessageID);
 	rb_cMessageProducer.define_method("disable_message_id=", &cms::MessageProducer::setDisableMessageID, (Arg("value")));
 
-	{
-		typedef void ( cms::MessageProducer::*send_func_type )( cms::Message* message, int deliveryMode, int priority, long long int timeToLive );
-		rb_cMessageProducer.define_method("send_message_with_attrs", send_func_type( &cms::MessageProducer::send ), (Arg("message"), Arg("delivery_mode"), Arg("priority"), Arg("time_to_live")));
-	}
+//	{
+//		typedef void ( cms::MessageProducer::*send_func_type )( cms::Message* message, int deliveryMode, int priority, long long int timeToLive );
+//		rb_cMessageProducer.define_method("send_message_with_attrs", send_func_type( &cms::MessageProducer::send ), (Arg("message"), Arg("delivery_mode"), Arg("priority"), Arg("time_to_live")));
+//	}
 
 	{
 		typedef void ( cms::MessageProducer::*send_func_type )( cms::Message* message );
 		rb_cMessageProducer.define_method("send_message", send_func_type( &cms::MessageProducer::send ), (Arg("message")));
 	}
 
-	{
-		typedef void ( cms::MessageProducer::*send_func_type )( const cms::Destination* destination, cms::Message* message );
-		rb_cMessageProducer.define_method("send_message_to", send_func_type( &cms::MessageProducer::send ), (Arg("destination"), Arg("message")));
-	}
-
-	{
-		typedef void ( cms::MessageProducer::*send_func_type )( const cms::Destination* destination, cms::Message* message, int deliveryMode, int priority, long long int timeToLive );
-		rb_cMessageProducer.define_method("send_message_to_with_attrs", send_func_type( &cms::MessageProducer::send ), (Arg("destination"), Arg("message"), Arg("deliveryMode"), Arg("priority"), Arg("timeToLive")));
-	}
+//	{
+//		typedef void ( cms::MessageProducer::*send_func_type )( const cms::Destination* destination, cms::Message* message );
+//		rb_cMessageProducer.define_method("send_message_to", send_func_type( &cms::MessageProducer::send ), (Arg("destination"), Arg("message")));
+//	}
+//
+//	{
+//		typedef void ( cms::MessageProducer::*send_func_type )( const cms::Destination* destination, cms::Message* message, int deliveryMode, int priority, long long int timeToLive );
+//		rb_cMessageProducer.define_method("send_message_to_with_attrs", send_func_type( &cms::MessageProducer::send ), (Arg("destination"), Arg("message"), Arg("deliveryMode"), Arg("priority"), Arg("timeToLive")));
+//	}
 
 }
